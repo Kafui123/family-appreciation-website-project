@@ -1,0 +1,141 @@
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+    
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+
+
+
+
+  html {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    background-color: brown;
+  }
+  
+  .parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  
+  .centered-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+
+
+
+
+footer {
+    text-align: center;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+  
+  .hero-container {
+    position: relative;
+  
+    
+  }
+  
+  .hero-section {
+  
+  background-size: cover;
+    background-position: center;
+    background-color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:blue;
+    text-align: center;
+    margin-bottom: 50px; 
+   transition: opacity 5s ease-in-out; 
+  
+  }
+  
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  #heroSection {
+    background-color: white;
+    
+  }
+  
+  
+  .hero-content {
+    max-width: 800px;
+  }
+  
+  .hero-heading {
+    font-size: 3em;
+    margin-bottom: 20px;
+    opacity: 0;
+  
+    animation: slideInTextHero 3s infinite alternate;
+  }
+  
+  .hero-subheading {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: slideInTextHero 3s infinite alternate 3s;
+  }
+  
+  @keyframes slideInTextHero {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  .hero-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(76, 83, 200, 1); 
+    color: white;
+    padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+  }
+  
+  
+  
+  

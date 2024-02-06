@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="aboutpage.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<header>
+  Family Appreciation
+</header>
+
+
+ <nav>
+  <a href="index.html">Home</a>
+</nav>
+
+ 
+
+
+
+  <!-- <form id="appreciationForm"> -->
+   
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <form action="https://formspree.io/f/moqogrlz"  method="POST">
+           <h1>Upload a picture of your loved one and place it here</h1>
+           <input type="file" id='imageUpload'  name ="user5.png" accept="image/*"> 
+          
+            <div id="imageContainer"></div>
+          <div id="result"></div>
+        </div>
+      </div>
+
+      <div id="questionnaire">
+        <h2>Display Preference Questionnaire</h2>
+        <p>How would you like your pictures to be displayed?</p>
+        <input type="radio" name="displayPreference" value="rotate" id="rotateRadio">
+        <label for="rotateRadio">Rotating Image Format</label>
+        <input type="radio" name="displayPreference" value="fade" id="fadeRadio">
+        <label for="fadeRadio">Fading Elements In and Out Format</label>
+        <button id="submitQuestionnaire">Submit</button>
+      </div> 
+      
+
+        <div id="appreciation-form">
+        <label for="message">Write a Message of Appreciation:</label>
+        <textarea id="message"  name="Appreciaion message" rows="4"></textarea>
+        <div id="appreciation-message"></div> 
+        
+        <button onclick="displayAppreciation()">Display Message</button>
+      </div>
+
+
+     
+      <div class="row">
+        <div class="col">
+          <input type="text" id="recipientEmail" placeholder="Recipient's Email">
+        </div>
+      </div>
+
+
+
+
+
+      <button class="j" type="submit" onclick="submitAppreciation()">Submit</button>
+ 
+    </div>
+  </div>
+</div>
+
+  
+  </form>
+<script src="script.js"></script>
+
+
+
+
+
+</body>
+</html>

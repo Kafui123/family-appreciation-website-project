@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="family-game.css" rel="stylesheet" type="text/css" />
+  <title>Family Matching Game</title>
+ 
+</head>
+
+<body>
+
+  <header>
+    <h1>Family Matching Game</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+  </nav>
+
+  <div id="game-description">
+    <p>Welcome to the Matching Game! Match the family emojis to win!</p>
+  </div>
+
+  <div id="memory-game"></div>
+
+
+  <div class="popup-button-container">
+    <button class="popup-button" onclick="openDialog()">Open Pop-up</button>
+  </div>
+
+  <dialog id="gameDialog">
+    <p>Do you want to restart or close the game?</p>
+    <button onclick="restartGame()">Restart Game</button>
+    <button onclick="closeGame()">Close Game</button>
+  </dialog>
+
+
+
+ 
+
+
+  <script>
+  function openDialog() {
+      const gameDialog = document.getElementById('gameDialog');
+      gameDialog.showModal();
+    }
+
+    function closeDialog() {
+      const gameDialog = document.getElementById('gameDialog');
+      gameDialog.close();
+    }
+
+    function restartGame() {
+      closeDialog();
+      resetGame(); // Call the resetGame function to reset the board
+    }
+
+    function closeGame() {
+      closeDialog();
+      window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const emojis = ['👨‍👩‍👧‍👦', '❤️', '🏡', '🌟', '😊', '🎉', '🌈', '🎁'];
+      let shuffledEmojis = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+      let firstCard, secondCard;
+      let lockBoard = false;
+
+      const memoryGame = document.getElementById('memory-game');
+
+      shuffledEmojis.forEach((emoji, index) => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.dataset.index = index;
+        card.textContent = '?';
+        card.addEventListener('click', flipCard);
+        memoryGame.appendChild(card);
+      });
+
+      function flipCard() {
+        if (lockBoard) return;
+        if (this === firstCard) return;
+
+        this.textContent = shuffledEmojis[this.dataset.index];
+
+        if (!firstCard) {
+          firstCard = this;
+          return;
+        }
+
+        secondCard = this;
+        checkForMatch();
+      }
+
+      function checkForMatch() {
+        const isMatch = firstCard.textContent === secondCard.textContent;
+
+        isMatch ? disableCards() : unflipCards();
+      }
+
+      function disableCards() {
+        firstCard.removeEventListener('click', flipCard);
+        secondCard.removeEventListener('click', flipCard);
+
+        if (document.querySelectorAll('.card[style="visibility: hidden;"]').length === emojis.length * 2) {
+          displayWinningModal();
+        } else {
+          resetBoard();
+        }
+      }
+
+      function unflipCards() {
+        lockBoard = true;
+
+        setTimeout(() => {
+          firstCard.textContent = '?';
+          secondCard.textContent = '?';
+
+          resetBoard();
+        }, 1000);
+      }
+
+      function resetBoard() {
+        [firstCard, secondCard] = [null, null];
+        lockBoard = false;
+      }
+
+      function resetGame() {
+        shuffledEmojis = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+          card.textContent = '?';
+          card.style.visibility = 'visible';
+          card.addEventListener('click', flipCard);
+        });
+        resetBoard();
+      }
+
+      function displayWinningModal() {
+        const modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.innerHTML = `
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Congratulations! You won!</p>
+            <button onclick="restartGame()">Restart</button>
+          </div>
+        `;
+        document.body.appendChild(modal);
+      }
+
+      window.closeModal = function () {
+        const modal = document.querySelector('.modal');
+        if (modal) {
+          modal.remove();
+        }
+      };
+
+      window.restartGame = restartGame;
+      window.closeGame = closeGame;
+    });
+  </script>
+  </script>
+</body>
+
+</html>
